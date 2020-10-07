@@ -1,0 +1,17 @@
+
+public class HelloWorld {
+	public static void main(String args[])
+	{
+		//System.out.println("Hello world!");
+		int a = 10;
+		a = 11;
+		int b =12;
+		b = 13;
+		int c = add(a,b);
+		System.out.println("c=" +c);
+	}
+	public static int add(int a, int b)
+	{
+		return a+b;
+	}
+}

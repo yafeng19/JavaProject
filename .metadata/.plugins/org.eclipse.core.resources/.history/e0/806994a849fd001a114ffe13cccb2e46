@@ -1,0 +1,10 @@
+public class HelloWorld {
+    public static void main(String args[]) {
+        char c ='A';
+        int x = c;
+        System.out.println(x);
+        x += 1 ;
+        c = (char)x;
+        System.out.println(c);
+    }
+}

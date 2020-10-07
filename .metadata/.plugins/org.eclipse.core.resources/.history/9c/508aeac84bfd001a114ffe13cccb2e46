@@ -1,0 +1,6 @@
+public class HelloWorld {
+    public static void main(String args[]) {
+        String info = "你好啊，美丽的祖国！ ";
+        System.out.println(info + " !!!!");
+    }
+}

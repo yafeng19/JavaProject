@@ -3,64 +3,91 @@ abstract class Duck {
         System.out.println("Duck's swim...");
     }
 
-    public void quack() {
-        System.out.println("Duck's quack...");
-    }
-
-    public void fly() {
-        System.out.println("Duck's fly...");
-    }
-
     public abstract void display();
 }
 
-class RedHeadDuck extends Duck {
-    @Override
-    public void display() {
-        System.out.println("Read Head duck's display");
-    }
+interface Quackable {
+    public void quack();
 }
 
-class MellardDuck extends Duck {
-    @Override
-    public void display() {
-        System.out.println("Mellard duck's display");
-    }
+interface Flyable {
+    public void fly();
 }
 
-class SomeUnknownDuck extends Duck {
+class RedHeadDuck extends Duck implements Quackable, Flyable {
     @Override
-    public void display() {
-        System.out.println("Some unknown duck's display");
-    }
-
     public void quack() {
-        System.out.println("Some unknown duck's quack...");
+        System.out.println("Read Head duck's quack!");
     }
 
+    @Override
     public void fly() {
-        System.out.println("Some unknown duck's fly...");
+        System.out.println("Read Head duck's fly!");
     }
+
+    @Override
+    public void display() {
+        System.out.println("Read Head duck's display!");
+    }
+}
+
+class MellardDuck extends Duck implements Quackable, Flyable {
+    @Override
+    public void quack() {
+        System.out.println("Mellard duck's quack!");
+    }
+
+    @Override
+    public void fly() {
+        System.out.println("Mellard duck's fly!");
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Mellard duck's display!");
+    }
+}
+
+class RubberDuck extends Duck implements Quackable {
+    public void quack() {
+        System.out.println("Rubber duck's quack!");
+    }
+
+    @Override
+    public void display() {
+        System.out.println("Rubber duck's display!");
+    }
+}
+
+class DecoyDuck extends Duck {
+    @Override
+    public void display() {
+        System.out.println("Decoy duck's display");
+    }
+
 }
 
 public class Client {
     public static void main(String args[]) {
-        Duck rhd = new RedHeadDuck();
+        RedHeadDuck rhd = new RedHeadDuck();
         rhd.swim();
         rhd.quack();
         rhd.fly();
         rhd.display();
         System.out.println("===========================");
-        Duck md = new MellardDuck();
+       MellardDuck md = new MellardDuck();
         md.swim();
         md.quack();
         md.fly();
         md.display();
         System.out.println("===========================");
-        Duck sud = new SomeUnknownDuck();
-        sud.swim();
-        sud.quack();
-        sud.fly();
-        sud.display();
+        RubberDuck rd = new RubberDuck();
+        rd.swim();
+        rd.quack();
+        rd.display();
+        DecoyDuck deDuck = new DecoyDuck();
+        deDuck.swim();
+        deDuck.display();
+
     }
 }

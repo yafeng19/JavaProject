@@ -1,17 +1,40 @@
 abstract class Duck {
+    Flyable flyBehavior;    //用接口声明实例变量
+    Quackable quackBehavior;
+
     public void swim() {
         System.out.println("Duck's swim...");
     }
 
     public abstract void display();
+
+    public void performFly() {
+        flyBehavior.fly();  //由子类决定哪个对象调用方法
+    }
+
+    public void performQuack() {
+        quackBehavior.quack();
+    }
 }
 
 interface Quackable {
     public void quack();
 }
 
+class Quack implements Quackable {
+    public void quack() {
+        System.out.println("Quack");
+    }
+}
+
 interface Flyable {
     public void fly();
+}
+
+class FlyWithWings implements Flyable {
+    public void fly() {
+        System.out.println("I'm flying!");
+    }
 }
 
 class RedHeadDuck extends Duck implements Quackable, Flyable {
@@ -31,15 +54,10 @@ class RedHeadDuck extends Duck implements Quackable, Flyable {
     }
 }
 
-class MellardDuck extends Duck implements Quackable, Flyable {
-    @Override
-    public void quack() {
-        System.out.println("Mellard duck's quack!");
-    }
-
-    @Override
-    public void fly() {
-        System.out.println("Mellard duck's fly!");
+class MellardDuck extends Duck {
+    public MellardDuck() {
+        quackBehavior = new Quack();
+        flyBehavior = new FlyWithWings();
     }
 
     @Override
@@ -75,10 +93,10 @@ public class Client {
         rhd.fly();
         rhd.display();
         System.out.println("===========================");
-       MellardDuck md = new MellardDuck();
+        MellardDuck md = new MellardDuck();
         md.swim();
-        md.quack();
-        md.fly();
+        md.performQuack();
+        md.performFly();
         md.display();
         System.out.println("===========================");
         RubberDuck rd = new RubberDuck();

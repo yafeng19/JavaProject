@@ -1,3 +1,11 @@
+interface Flyable {
+    public void fly();
+}
+
+interface Quackable {
+    public void quack();
+}
+
 abstract class Duck {
     Flyable flyBehavior;    //用接口声明实例变量
     Quackable quackBehavior;
@@ -17,35 +25,38 @@ abstract class Duck {
     }
 }
 
-interface Quackable {
-    public void quack();
-}
-
-class Quack implements Quackable {
-    public void quack() {
-        System.out.println("Quack");
-    }
-}
-
-interface Flyable {
-    public void fly();
-}
-
+/*Flyable 接口的两个子类*/
 class FlyWithWings implements Flyable {
     public void fly() {
         System.out.println("I'm flying!");
     }
 }
 
-class RedHeadDuck extends Duck implements Quackable, Flyable {
-    @Override
-    public void quack() {
-        System.out.println("Read Head duck's quack!");
-    }
-
-    @Override
+class FlyNoWay implements Flyable {
     public void fly() {
-        System.out.println("Read Head duck's fly!");
+        System.out.println("I can not fly!");
+    }
+}
+
+
+/*Quackable 接口的两个子类*/
+class Quack implements Quackable {
+    public void quack() {
+        System.out.println("Quack...");
+    }
+}
+
+class Squeak implements Quackable {
+    public void quack() {
+        System.out.println("Squeak...");
+    }
+}
+
+/*RedHeadDuck 可以实现FlyWithWings()和Quack()*/
+class RedHeadDuck extends Duck {
+    public RedHeadDuck() {
+        flyBehavior = new FlyWithWings();
+        quackBehavior = new Quack();
     }
 
     @Override
@@ -54,10 +65,11 @@ class RedHeadDuck extends Duck implements Quackable, Flyable {
     }
 }
 
+/*MellardDuck 可以实现FlyWithWings()和Squeak()*/
 class MellardDuck extends Duck {
     public MellardDuck() {
-        quackBehavior = new Quack();
         flyBehavior = new FlyWithWings();
+        quackBehavior = new Squeak();
     }
 
     @Override
@@ -66,9 +78,11 @@ class MellardDuck extends Duck {
     }
 }
 
-class RubberDuck extends Duck implements Quackable {
-    public void quack() {
-        System.out.println("Rubber duck's quack!");
+/*RubberDuck 可以实现FlyNoWay()和Quack()*/
+class RubberDuck extends Duck {
+    public RubberDuck() {
+        flyBehavior = new FlyNoWay();
+        quackBehavior = new Quack();
     }
 
     @Override
@@ -77,35 +91,24 @@ class RubberDuck extends Duck implements Quackable {
     }
 }
 
-class DecoyDuck extends Duck {
-    @Override
-    public void display() {
-        System.out.println("Decoy duck's display");
-    }
-
-}
-
 public class Client {
     public static void main(String args[]) {
         RedHeadDuck rhd = new RedHeadDuck();
         rhd.swim();
-        rhd.quack();
-        rhd.fly();
+        rhd.performFly();
+        rhd.performQuack();
         rhd.display();
         System.out.println("===========================");
         MellardDuck md = new MellardDuck();
         md.swim();
-        md.performQuack();
         md.performFly();
+        md.performQuack();
         md.display();
         System.out.println("===========================");
-        RubberDuck rd = new RubberDuck();
+        Duck rd = new RubberDuck();
         rd.swim();
-        rd.quack();
+        rd.performFly();
+        rd.performQuack();
         rd.display();
-        DecoyDuck deDuck = new DecoyDuck();
-        deDuck.swim();
-        deDuck.display();
-
     }
 }

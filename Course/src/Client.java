@@ -7,8 +7,26 @@ interface Quackable {
 }
 
 abstract class Duck {
-    Flyable flyBehavior;    //用接口声明实例变量
-    Quackable quackBehavior;
+    private Flyable flyBehavior;    //用接口声明实例变量
+
+    public Quackable getQuackBehavior() {
+        return quackBehavior;
+    }
+
+    public void setQuackBehavior(Quackable quackBehavior) {
+        this.quackBehavior = quackBehavior;
+    }
+
+    private Quackable quackBehavior;
+
+    public Flyable getFlyBehavior() {
+        return flyBehavior;
+    }
+
+    public void setFlyBehavior(Flyable flyBehavior) {
+        this.flyBehavior = flyBehavior;
+    }
+
 
     public void swim() {
         System.out.println("Duck's swim...");
@@ -28,7 +46,7 @@ abstract class Duck {
 /*Flyable 接口的两个子类*/
 class FlyWithWings implements Flyable {
     public void fly() {
-        System.out.println("I'm flying!");
+        System.out.println("I'm flying with wings!");
     }
 }
 
@@ -38,6 +56,11 @@ class FlyNoWay implements Flyable {
     }
 }
 
+class FlyWithRocket implements Flyable {
+    public void fly() {
+        System.out.println("I'm flying with rocket!");
+    }
+}
 
 /*Quackable 接口的两个子类*/
 class Quack implements Quackable {
@@ -52,11 +75,17 @@ class Squeak implements Quackable {
     }
 }
 
+class MuteQuack implements Quackable {
+    public void quack() {
+        System.out.println("I can not quack!");
+    }
+}
+
 /*RedHeadDuck 可以实现FlyWithWings()和Quack()*/
 class RedHeadDuck extends Duck {
     public RedHeadDuck() {
-        flyBehavior = new FlyWithWings();
-        quackBehavior = new Quack();
+        setFlyBehavior(new FlyWithWings());
+        setQuackBehavior(new Quack());
     }
 
     @Override
@@ -68,8 +97,8 @@ class RedHeadDuck extends Duck {
 /*MellardDuck 可以实现FlyWithWings()和Squeak()*/
 class MellardDuck extends Duck {
     public MellardDuck() {
-        flyBehavior = new FlyWithWings();
-        quackBehavior = new Squeak();
+        setFlyBehavior(new FlyWithWings());
+        setQuackBehavior(new Squeak());
     }
 
     @Override
@@ -81,8 +110,8 @@ class MellardDuck extends Duck {
 /*RubberDuck 可以实现FlyNoWay()和Quack()*/
 class RubberDuck extends Duck {
     public RubberDuck() {
-        flyBehavior = new FlyNoWay();
-        quackBehavior = new Quack();
+        setFlyBehavior(new FlyNoWay());
+        setQuackBehavior(new Quack());
     }
 
     @Override
@@ -108,6 +137,10 @@ public class Client {
         Duck rd = new RubberDuck();
         rd.swim();
         rd.performFly();
+        rd.performQuack();
+        rd.setFlyBehavior(new FlyWithRocket());
+        rd.performFly();
+        rd.setQuackBehavior(new MuteQuack());
         rd.performQuack();
         rd.display();
     }

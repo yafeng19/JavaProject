@@ -2,18 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="aaf3dc70-527d-493f-876b-91fa4121f85d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../Experiment3/Experiment3.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Course/Client.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Course/Client.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Course/Duck.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Course/Duck.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Course/FlyNoWay.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Course/FlyNoWay.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Course/FlyWithWings.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Course/FlyWithWings.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Course/MellardDuck.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Course/MellardDuck.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Course/Quack.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Course/Quack.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Course/RedHeadDuck.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Course/RedHeadDuck.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Course/RubberDuck.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Course/RubberDuck.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/Course/Squeak.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/Course/Squeak.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Client.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Client.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Experiment3/src/Character.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Experiment3/src/Character.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Experiment3/src/FightTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Experiment3/src/FightTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Experiment3/src/King.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Experiment3/src/King.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Experiment3/src/Knight.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Experiment3/src/Knight.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Experiment3/src/Queen.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Experiment3/src/Queen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Experiment3/src/Troll.java" beforeDir="false" afterPath="$PROJECT_DIR$/../Experiment3/src/Troll.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,7 +41,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Experiment3" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -140,6 +135,8 @@
       <workItem from="1603028412217" duration="2300000" />
       <workItem from="1603248108521" duration="3765000" />
       <workItem from="1603439001275" duration="4356000" />
+      <workItem from="1603542688862" duration="2000" />
+      <workItem from="1603852932309" duration="621000" />
     </task>
     <servers />
   </component>
@@ -171,10 +168,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="385" y="8" key="CommitChangelistDialog2/0.0.1536.824@0.0.1536.824" timestamp="1603249611409" />
-    <state x="549" y="170" key="FileChooserDialogImpl" timestamp="1602828866798">
+    <state x="549" y="170" key="FileChooserDialogImpl" timestamp="1603852952142">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1602828866798" />
+    <state x="549" y="170" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1603852952142" />
     <state width="723" height="275" key="GridCell.Tab.0.bottom" timestamp="1603444926839">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -191,10 +188,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="723" height="275" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1603444926839" />
-    <state x="461" y="240" key="com.intellij.ide.util.TipDialog" timestamp="1603439001190">
+    <state x="461" y="240" key="com.intellij.ide.util.TipDialog" timestamp="1603852932553">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="461" y="240" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1603439001190" />
+    <state x="461" y="240" key="com.intellij.ide.util.TipDialog/0.0.1536.824@0.0.1536.824" timestamp="1603852932553" />
     <state x="485" y="313" key="com.intellij.jarRepository.RepositoryAttachDialog-DOWNLOAD" timestamp="1602643658302">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -203,9 +200,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="564" y="330" key="com.intellij.openapi.vcs.update.UpdateOrStatusOptionsDialogupdate-v2/0.0.1536.824@0.0.1536.824" timestamp="1603249606474" />
-    <state x="178" y="28" key="new project wizard" timestamp="1603440342192">
+    <state x="178" y="28" key="new project wizard" timestamp="1603852946618">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="178" y="28" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1603440342192" />
+    <state x="178" y="28" key="new project wizard/0.0.1536.824@0.0.1536.824" timestamp="1603852946618" />
   </component>
 </project>

@@ -1,12 +1,12 @@
 public class DataBaseFile implements Storage {
     @Override
-    public void create() {
-
+    public String create(Student [] student,Student createStudent,int count) {
+        return "";
     }
 
     @Override
-    public void findAll() {
-
+    public String findAll() {
+        return "";
     }
 
     @Override
@@ -15,17 +15,17 @@ public class DataBaseFile implements Storage {
     }
 
     @Override
-    public void findByStudentName() {
+    public void findByStudentName(Student[] student, int count) {
 
     }
 
     @Override
-    public void update() {
+    public void update(Student[] student, Student updateStudent, int count) {
 
     }
 
     @Override
-    public void delete() {
+    public void delete(Student[] student, Student deleteStudent, int count) {
 
     }
 }

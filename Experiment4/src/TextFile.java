@@ -1,24 +1,71 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.nio.Buffer;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
-public class TextFile implements Storage{
-    @Override
-    public void create() {
-        System.out.println("create()");
-
+public class TextFile implements Storage {
+    public void writeToFile(Student[] student, int count) { //将数组内的信息写回文件
+        BufferedReader br = null;
+        BufferedWriter bw = null;
+        try {
+            br = new BufferedReader(new FileReader("student.txt"));
+            String line = br.readLine();   //读出表头
+            bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("student.txt", false)));
+            bw.write(line);     //写入表头
+            for (int i = 0; i < count; i++) {   //依次写入每一行
+                if (!student[i].getStudentId().equals(" ")) {
+                    bw.newLine();
+                    bw.write(String.format("%02d", student[i].getNo()) + '\t' + student[i].getName() + '\t' + student[i].getGender() + '\t'
+                            + student[i].getStudentId() + '\t' + student[i].getMobilePhoneNumber() + '\t' + student[i].getMemo() + '\t');
+                }
+            }
+        } catch (IOException e) {   //写入错误
+            e.printStackTrace();
+        } finally {
+            try {
+                br.close();
+                bw.close();
+            } catch (IOException e) {   //文件关闭错误
+                e.printStackTrace();
+            }
+        }
     }
 
     @Override
-    public void findAll() {
+    public String create(Student[] student, Student createStudent, int count) {
+        //boolean exist = false;
+        for (int i = 0; i < count; i++) {
+            if (student[i].getStudentId().equals(createStudent.getStudentId()))
+                return "学号已经在信息表中，不可再添加";
+            if (student[i].getMobilePhoneNumber().equals(createStudent.getMobilePhoneNumber()))
+                return "手机号已经在信息表中，不可再添加";
+        }
+        //输入的学号与手机号没有在信息表中出现的时候才可以添加
+        BufferedWriter bw = null;
+        try {
+            bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("student.txt", true)));
+            bw.newLine();
+            bw.write(String.format("%02d", createStudent.getNo()) + '\t' + createStudent.getName() + '\t' + createStudent.getGender() + '\t'
+                    + createStudent.getStudentId() + '\t' + createStudent.getMobilePhoneNumber() + '\t' + createStudent.getMemo() + '\t');
+        } catch (IOException e) {   //写入错误
+            e.printStackTrace();
+        } finally {
+            try {
+                bw.close();
+            } catch (IOException e) {   //文件关闭错误
+                e.printStackTrace();
+            }
+        }
+        return "添加成功";
+    }
+
+    @Override
+    public String findAll() {
         int i = 0;
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader("student.txt"));
-            String line ;
+            String line;
             while ((line = br.readLine()) != null)
                 System.out.println(line);
         } catch (FileNotFoundException e) { //找不到文件错误
@@ -32,6 +79,7 @@ public class TextFile implements Storage{
                 e.printStackTrace();
             }
         }
+        return "检索完毕";
     }
 
 
@@ -39,31 +87,85 @@ public class TextFile implements Storage{
     public void findByStudentId(Student[] student, int count) {
         Scanner scanner = new Scanner(System.in);  //读取键盘输入
         String findStudentId = scanner.next();
-        int i = 0;
-        for(i = 0; i<count;i++){
-            if(student[i].getStudentId().equals(findStudentId))
+        for (int i = 0; i < count; i++) {
+            if (student[i].getStudentId().equals(findStudentId)) //判断字符串相等
             {
-                System.out.println(student[i].getStudentId());
-                break;
-            }
-            else {
-                System.out.println("not found");
+                System.out.print(String.format("%02d", student[i].getNo()));
+                System.out.print('\t' + student[i].getName());
+                System.out.print('\t' + student[i].getGender());
+                System.out.print('\t' + student[i].getStudentId());
+                System.out.print('\t' + student[i].getMobilePhoneNumber());
+                try {
+                    System.out.print('\t' + student[i].getMemo());
+                } catch (NoSuchElementException e) {
+                    System.out.print(" ");
+                } finally {
+                    System.out.println('\r');
+                }
+                return;
             }
         }
+        System.out.println("没有查找到此学生");
     }
 
     @Override
-    public void findByStudentName() {
-
+    public void findByStudentName(Student[] student, int count) {
+        boolean find = false;
+        Scanner scanner = new Scanner(System.in);  //读取键盘输入
+        String findStudentName = scanner.next();
+        for (int i = 0; i < count; i++) {
+            if (student[i].getName().equals(findStudentName)) //判断字符串相等
+            {
+                System.out.print(String.format("%02d", student[i].getNo()));
+                System.out.print('\t' + student[i].getName());
+                System.out.print('\t' + student[i].getGender());
+                System.out.print('\t' + student[i].getStudentId());
+                System.out.print('\t' + student[i].getMobilePhoneNumber());
+                try {
+                    System.out.print('\t' + student[i].getMemo());
+                } catch (NoSuchElementException e) {
+                    System.out.print(" ");
+                } finally {
+                    System.out.println('\r');
+                }
+                find = true;
+            }
+        }
+        if (!find)
+            System.out.println("没有查找到此学生");
     }
 
     @Override
-    public void update() {
-
+    public void update(Student[] student, Student updateStudent, int count) {
+        for (int i = 0; i < count; i++) {
+            if (student[i].getStudentId().equals(updateStudent.getStudentId())) {
+                student[i].setName(updateStudent.getName());
+                student[i].setGender(updateStudent.getGender());
+                student[i].setStudentId(updateStudent.getStudentId());
+                student[i].setMobilePhoneNumber(updateStudent.getMobilePhoneNumber());
+                student[i].setMemo(updateStudent.getMemo());
+                writeToFile(student, count);
+                System.out.println("修改成功");
+                return;
+            }
+        }
+        System.out.println("没有查找到此学生");
     }
 
     @Override
-    public void delete() {
-
+    public void delete(Student[] student, Student deleteStudent, int count) {
+        for (int i = 0; i < count; i++) {
+            if (student[i].getStudentId().equals(deleteStudent.getStudentId())) {
+                student[i].setName(" ");
+                student[i].setGender(" ");
+                student[i].setStudentId(" ");
+                student[i].setMobilePhoneNumber(" ");
+                student[i].setMemo(" ");
+                writeToFile(student, count);
+                System.out.println("删除成功");
+                return;
+            }
+        }
+        System.out.println("没有查找到此学生");
     }
 }

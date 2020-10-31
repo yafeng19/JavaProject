@@ -10,22 +10,22 @@ public class JsonFile implements Storage {
     }
 
     @Override
-    public void findByStudentId(Student[] student, int count) {
-
+    public String findByStudentId(Student[] student,  String findStudentId,int count) {
+        return "";
     }
 
     @Override
-    public void findByStudentName(Student[] student, int count) {
-
+    public String findByStudentName(Student[] student, String findStudentName, int count) {
+        return "";
     }
 
     @Override
-    public void update(Student[] student, Student updateStudent, int count) {
-
+    public String update(Student[] student, Student updateStudent, int count) {
+        return "";
     }
 
     @Override
-    public void delete(Student[] student, Student deleteStudent, int count) {
-
+    public String delete(Student[] student, Student deleteStudent, int count) {
+        return "";
     }
 }

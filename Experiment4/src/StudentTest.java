@@ -12,15 +12,14 @@ public class StudentTest {
     public static void main(String args[]) {
 
         transferIntoArray();    //将文件数据存入数组
-        //createStudentInformation();  //添加学生信息
-        //Student findAllStudent = new Student();
-        //findAllStudent.findAllInfo();
-        //Student findByStudentIdStudent = new Student(); //通过学号查找学生信息（唯一）
-        //findByStudentIdStudent.findByStudentIdInfo(student,count);
-        //Student findByStudentNameStudent = new Student(); //通过学生姓名查找学生信息（不唯一）
-        //findByStudentNameStudent.findByStudentNameInfo(student,count);
-        //updateInformation();        //更新（修改）学生信息
-        //deleteInformation();         //删除学生信息
+        /*
+        createStudentInformation();  //添加学生信息
+        findAllStudentInformation();  //检索全部
+        findByStudentIdInformation();   //根据学号查找姓名
+        findByStudentNameInformation();   //根据姓名查找学生
+        updateInformation();        //更新（修改）学生信息
+        deleteInformation();         //删除学生信息
+         */
     }
 
     public static void transferIntoArray() {
@@ -86,6 +85,23 @@ public class StudentTest {
         count++;
     }
 
+    public static void findAllStudentInformation(){
+        Student findAllStudent = new Student();
+        StudentList studentList = new StudentList();
+        System.out.println(studentList.findAllInfo());
+    }
+    public static void findByStudentIdInformation(){
+        Scanner scanner = new Scanner(System.in);  //读取键盘输入
+        String findStudentId = scanner.next();
+        StudentList studentList = new StudentList();
+        System.out.println(studentList.findByStudentIdInfo(student,findStudentId,count));
+    }
+    public static void  findByStudentNameInformation(){
+        Scanner scanner = new Scanner(System.in);  //读取键盘输入
+        String findStudentName = scanner.next();
+        StudentList studentList = new StudentList();
+        System.out.println(studentList.findByStudentIdInfo(student,findStudentName,count));
+    }
     public static void updateInformation() {
         Student updateStudent = new Student();
         StudentList studentList = new StudentList();
@@ -104,7 +120,7 @@ public class StudentTest {
             updateStudent.setMemo(" ");
         }
         scanner.close();
-        studentList.updateInfo(student, updateStudent, count);
+        System.out.println(studentList.updateInfo(student, updateStudent, count));
     }
 
     public static void deleteInformation() {
@@ -116,6 +132,6 @@ public class StudentTest {
         Scanner scanner = new Scanner(line);    //将读取的一行信息通过以下方式分解
         deleteStudent.setStudentId(scanner.next());    //学号
         scanner.close();
-        studentList.deleteInfo(student, deleteStudent, count);
+        System.out.println(studentList.deleteInfo(student, deleteStudent, count));
     }
 }

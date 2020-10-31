@@ -84,9 +84,7 @@ public class TextFile implements Storage {
 
 
     @Override
-    public void findByStudentId(Student[] student, int count) {
-        Scanner scanner = new Scanner(System.in);  //读取键盘输入
-        String findStudentId = scanner.next();
+    public String findByStudentId(Student[] student,String findStudentId, int count) {
         for (int i = 0; i < count; i++) {
             if (student[i].getStudentId().equals(findStudentId)) //判断字符串相等
             {
@@ -102,17 +100,15 @@ public class TextFile implements Storage {
                 } finally {
                     System.out.println('\r');
                 }
-                return;
+                return "查找成功";
             }
         }
-        System.out.println("没有查找到此学生");
+        return "没有查找到此学生";
     }
 
     @Override
-    public void findByStudentName(Student[] student, int count) {
+    public String findByStudentName(Student[] student, String findStudentName,int count) {
         boolean find = false;
-        Scanner scanner = new Scanner(System.in);  //读取键盘输入
-        String findStudentName = scanner.next();
         for (int i = 0; i < count; i++) {
             if (student[i].getName().equals(findStudentName)) //判断字符串相等
             {
@@ -131,12 +127,14 @@ public class TextFile implements Storage {
                 find = true;
             }
         }
-        if (!find)
-            System.out.println("没有查找到此学生");
+        if (find)
+            return "查找成功";
+        else
+            return "没有查找到此学生";
     }
 
     @Override
-    public void update(Student[] student, Student updateStudent, int count) {
+    public String update(Student[] student, Student updateStudent, int count) {
         for (int i = 0; i < count; i++) {
             if (student[i].getStudentId().equals(updateStudent.getStudentId())) {
                 student[i].setName(updateStudent.getName());
@@ -145,15 +143,14 @@ public class TextFile implements Storage {
                 student[i].setMobilePhoneNumber(updateStudent.getMobilePhoneNumber());
                 student[i].setMemo(updateStudent.getMemo());
                 writeToFile(student, count);
-                System.out.println("修改成功");
-                return;
+                return "修改成功";
             }
         }
-        System.out.println("没有查找到此学生");
+        return "没有查找到此学生";
     }
 
     @Override
-    public void delete(Student[] student, Student deleteStudent, int count) {
+    public String delete(Student[] student, Student deleteStudent, int count) {
         for (int i = 0; i < count; i++) {
             if (student[i].getStudentId().equals(deleteStudent.getStudentId())) {
                 student[i].setName(" ");
@@ -162,10 +159,9 @@ public class TextFile implements Storage {
                 student[i].setMobilePhoneNumber(" ");
                 student[i].setMemo(" ");
                 writeToFile(student, count);
-                System.out.println("删除成功");
-                return;
+                return "删除成功";
             }
         }
-        System.out.println("没有查找到此学生");
+        return "没有查找到此学生";
     }
 }

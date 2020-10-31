@@ -1,6 +1,6 @@
 import org.junit.*;
+import org.junit.runners.MethodSorters;
 
-import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)   //按照函数名排序进行测试
 public class StudentJunitTest {
     private Student stuTest = null;
     private StudentList listTest= null;
@@ -21,9 +22,8 @@ public class StudentJunitTest {
         listTest = new StudentList();
         transferIntoArray();
     }
-
     @Test
-    public void testCreateStudentInformation() {
+    public void test01_CreateStudentInformation() {
         stuTest.setNo(countTest+1);
         stuTest.setName("诸葛诞");
         stuTest.setGender("男");
@@ -37,7 +37,7 @@ public class StudentJunitTest {
     }
 
     @Test
-    public void testOnlyOneStudentId() {
+    public void test02_OnlyOneStudentId() {
         stuTest.setNo(countTest+1);
         stuTest.setName("诸葛恪");
         stuTest.setGender("男");
@@ -50,7 +50,7 @@ public class StudentJunitTest {
     }
 
     @Test
-    public void testOnlyOneMobilePhoneNumber() {
+    public void test03_OnlyOneMobilePhoneNumber() {
         stuTest.setNo(countTest+1);
         stuTest.setName("诸葛瑾");
         stuTest.setGender("男");
@@ -63,11 +63,42 @@ public class StudentJunitTest {
     }
 
     @Test
-    public void testFindAll() {
+    public void test04_FindAll() {
         listTest.findAllInfo();
-        //Assert.assertEquals("手机号已经在信息表中，不可再添加", result);
     }
 
+    @Test
+    public void test05_FindByStudentIdInfo() {
+        stuTest.setStudentId("150811033");
+        result = listTest.findByStudentIdInfo(student,stuTest.getStudentId(),countTest);
+        System.out.println(result);
+        Assert.assertEquals("查找成功", result);
+    }
+    @Test
+    public void test06_FindByStudentNameInfo() {
+        stuTest.setName("太史慈");
+        result = listTest.findByStudentNameInfo(student,stuTest.getName(),countTest);
+        System.out.println(result);
+        Assert.assertEquals("查找成功", result);
+    }
+    @Test
+    public void test07_UpdateInfo() {
+        stuTest.setName("夏侯渊");
+        stuTest.setGender("男");
+        stuTest.setStudentId("141080320");
+        stuTest.setMobilePhoneNumber("13562659875");    //修改手机号
+        stuTest.setMemo("T7");      //修改备注
+        result = listTest.updateInfo(student, stuTest, countTest);
+        System.out.println(result);
+        Assert.assertEquals("修改成功", result);
+    }
+    @Test
+    public void test08_DeleteInfo() {
+        stuTest.setStudentId("171090221");
+        result = listTest.deleteInfo(student,stuTest,countTest);
+        System.out.println(result);
+        Assert.assertEquals("删除成功", result);
+    }
     @After
     public void close() {
         System.out.println("该项测试结束");

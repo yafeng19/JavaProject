@@ -12,14 +12,14 @@ public class StudentTest {
     public static void main(String args[]) {
 
         transferIntoArray();    //将文件数据存入数组
-        /*
+
         createStudentInformation();  //添加学生信息
         findAllStudentInformation();  //检索全部
         findByStudentIdInformation();   //根据学号查找姓名
         findByStudentNameInformation();   //根据姓名查找学生
         updateInformation();        //更新（修改）学生信息
         deleteInformation();         //删除学生信息
-         */
+
     }
 
     public static void transferIntoArray() {
@@ -81,37 +81,45 @@ public class StudentTest {
             createStudent.setMemo(" ");
         }
         scanner.close();
-        System.out.println(studentList.createInfo(student,createStudent,count));   //调用添加信息方法
+        System.out.println(studentList.createInfo(student, createStudent, count));   //调用添加信息方法
         count++;
     }
 
-    public static void findAllStudentInformation(){
+    public static void findAllStudentInformation() {
         Student findAllStudent = new Student();
         StudentList studentList = new StudentList();
+        System.out.println("以下为检索到的全部学生信息");
         System.out.println(studentList.findAllInfo());
     }
-    public static void findByStudentIdInformation(){
+
+    public static void findByStudentIdInformation() {
+        System.out.println("请输入需要查找的学生信息的学号");
         Scanner scanner = new Scanner(System.in);  //读取键盘输入
         String findStudentId = scanner.next();
         StudentList studentList = new StudentList();
-        System.out.println(studentList.findByStudentIdInfo(student,findStudentId,count));
+        System.out.println(studentList.findByStudentIdInfo(student, findStudentId, count));
     }
-    public static void  findByStudentNameInformation(){
+
+    public static void findByStudentNameInformation() {
+        System.out.println("请输入需要查找的学生信息的姓名");
         Scanner scanner = new Scanner(System.in);  //读取键盘输入
         String findStudentName = scanner.next();
         StudentList studentList = new StudentList();
-        System.out.println(studentList.findByStudentIdInfo(student,findStudentName,count));
+        System.out.println(studentList.findByStudentNameInfo(student, findStudentName, count));
     }
+
     public static void updateInformation() {
         Student updateStudent = new Student();
         StudentList studentList = new StudentList();
-        System.out.println("请依次输入需要更新的学生信息的姓名 性别 学号 手机号 备注（可以不填）");   //TODO:学号、手机号位数控制未完成
-        Scanner scanner_ = new Scanner(System.in);  //读取键盘输入
-        String line = scanner_.nextLine();
+        System.out.println("请输入需要更新的学生信息的学号");
+        Scanner scanner_1 = new Scanner(System.in);  //读取键盘输入
+        updateStudent.setStudentId(scanner_1.next());    //学号
+        System.out.println("请依次输入需要更新的学生信息的姓名 性别 手机号 备注（可以不填）");   //TODO:学号、手机号位数控制未完成
+        Scanner scanner_2 = new Scanner(System.in);  //读取键盘输入
+        String line = scanner_2.nextLine();
         Scanner scanner = new Scanner(line);    //将读取的一行信息通过以下方式分解
         updateStudent.setName(scanner.next());    //姓名
         updateStudent.setGender(scanner.next());    //性别
-        updateStudent.setStudentId(scanner.next());    //学号
         updateStudent.setMobilePhoneNumber(scanner.next());    //手机号
         try {
             updateStudent.setMemo(scanner.next());    //备注（可以不填）

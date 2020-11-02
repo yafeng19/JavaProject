@@ -43,6 +43,12 @@ public class TextFile implements Storage {
         //输入的学号与手机号没有在信息表中出现的时候才可以添加
         BufferedWriter bw = null;
         try {
+            student[count].setNo(createStudent.getNo());
+            student[count].setName(createStudent.getName());
+            student[count].setGender(createStudent.getGender());
+            student[count].setStudentId(createStudent.getStudentId());
+            student[count].setMobilePhoneNumber(createStudent.getMobilePhoneNumber());
+            student[count].setMemo(createStudent.getMemo());
             bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("student.txt", true)));
             bw.newLine();
             bw.write(String.format("%02d", createStudent.getNo()) + '\t' + createStudent.getName() + '\t' + createStudent.getGender() + '\t'
@@ -84,7 +90,7 @@ public class TextFile implements Storage {
 
 
     @Override
-    public String findByStudentId(Student[] student,String findStudentId, int count) {
+    public String findByStudentId(Student[] student, String findStudentId, int count) {
         for (int i = 0; i < count; i++) {
             if (student[i].getStudentId().equals(findStudentId)) //判断字符串相等
             {
@@ -107,7 +113,7 @@ public class TextFile implements Storage {
     }
 
     @Override
-    public String findByStudentName(Student[] student, String findStudentName,int count) {
+    public String findByStudentName(Student[] student, String findStudentName, int count) {
         boolean find = false;
         for (int i = 0; i < count; i++) {
             if (student[i].getName().equals(findStudentName)) //判断字符串相等
